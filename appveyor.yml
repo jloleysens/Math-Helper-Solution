@@ -3,6 +3,8 @@ nuget:
   account_feed: true
   project_feed: true
   disable_publish_on_pr: true 
+before_build:
+  - nuget restore
 build:
   publish_nuget: true
   publish_nuget_symbols: true

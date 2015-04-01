@@ -5,13 +5,9 @@ nuget:
   disable_publish_on_pr: true 
 before_build:
   - nuget restore
-- provider: Environment
-  name: production
-  on:
-    branch: master
-    appveyor_repo_tag: true
 build:
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true
+  appveyor_repo_tag: true #This should prompt a build on release only...
   verbosity: minimal

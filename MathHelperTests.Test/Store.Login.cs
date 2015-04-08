@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MathHelperTests.Test
 {
-	[TestFixture]
+	//[TestFixture]
 	partial class Store : TestBase
 	{
 		//Dataset for store tests log in tests
@@ -22,7 +22,7 @@ namespace MathHelperTests.Test
 		String loginErrorText = "Invalid username and password combination! Please try again!";
 		String validPassword = "hellopeter*1";
 
-		[Test]
+		//[Test]
 		public void loginFormValidation()
 		{
 			IWebDriver driver = this.WebDriver;
@@ -96,7 +96,7 @@ namespace MathHelperTests.Test
 			}
 			Console.WriteLine("\nLogin Form Validation Test: " + hasErrors(assertionErrors));
 		}
-		[TestCase]
+		//[TestCase]
 		public void successfulLogin(String email, String password)
 		{
 			IWebDriver driver = this.WebDriver;
@@ -144,7 +144,7 @@ namespace MathHelperTests.Test
 			}
 			Console.WriteLine("\nSuccessful Login Test: " + hasErrors(assertionErrors));
 		}
-		[TestCase]
+		//[TestCase]
 		public void successfulLogOut()
 		{
 			IWebDriver driver = this.WebDriver;

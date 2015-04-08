@@ -35,6 +35,8 @@ namespace MathHelperTests.Test
 
 			store.SetupTest();
 			store.loginFormValidation();
+			store.SetupTest();
+			store.successfulLogin("tester1.warp@gmail.com","hellopeter*1");
 		}
     }
 }

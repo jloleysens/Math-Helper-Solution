@@ -10,6 +10,12 @@ build:
   publish_nuget_symbols: true
   include_nuget_references: true
   verbosity: minimal
+test:
+  categories:
+    - Common
+    - [UI]
+    - [Unit]
+  
 deploy:
   provider: Environment
   name: production

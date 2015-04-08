@@ -12,7 +12,7 @@ namespace MathHelperTests.Test
 {
     public class TestClass
     {
-		[TestCase]
+		[TestCase, Category("Unit")]
 		public void AddTest()
 		{
 			ConsoleApplication1.MathsHelper helper = new ConsoleApplication1.MathsHelper();
@@ -20,14 +20,14 @@ namespace MathHelperTests.Test
 			Assert.AreEqual(30, result);
 		}
 
-		[TestCase]
+		[TestCase, Category("Unit")]
 		public void SubtractTest()
 		{
 			ConsoleApplication1.MathsHelper helper = new ConsoleApplication1.MathsHelper();
 			int result = helper.Subtract(20, 10);
 			Assert.AreEqual(10, result);
 		}
-		[TestCase]
+		[TestCase, Category("UI")]
 		public void LoginTests()
 		{
 			Store store = new Store();
@@ -37,6 +37,7 @@ namespace MathHelperTests.Test
 			store.loginFormValidation();
 			store.SetupTest();
 			store.successfulLogin("tester1.warp@gmail.com","hellopeter*1");
+			store.TeardownTest();
 		}
     }
 }

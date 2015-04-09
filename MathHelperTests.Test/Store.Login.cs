@@ -19,8 +19,8 @@ namespace MathHelperTests.Test
 		String invalidPassword = "hellopeter";
 		String homePageTitle = "[Hh][Oo][Mm][Ee]";
 		String pageTitle = "[Ll][Oo][Gg][Ii][Nn]";
-		String loginErrorText = "Invalid username and password combination! Please try again!";
-		String validPassword = "hellopeter*1";
+		//String loginErrorText = "Invalid username and password combination! Please try again!";
+		//String validPassword = "hellopeter*1";
 
 		//[Test]
 		public void loginFormValidation()

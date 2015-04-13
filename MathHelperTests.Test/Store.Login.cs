@@ -16,11 +16,11 @@ namespace MathHelperTests.Test
 		//Dataset for store tests log in tests
 		String nonExistentEmail = "klsdf@sldkf.com";
 		String validEmail = "tester1.warp@gmail.com";
-		String invalidPassword = "hellopeter";
+		String invalidPassword = "hellopeter*1";
 		String homePageTitle = "[Hh][Oo][Mm][Ee]";
 		String pageTitle = "[Ll][Oo][Gg][Ii][Nn]";
 		//String loginErrorText = "Invalid username and password combination! Please try again!";
-		//String validPassword = "hellopeter*1";
+		String validPassword = "hellopeter*1";
 
 		//[Test]
 		public void loginFormValidation()
@@ -110,16 +110,16 @@ namespace MathHelperTests.Test
 				if (loginForm != null)
 				{
 					loginForm.FindElement(By.Id("Email")).Clear();
-					loginForm.FindElement(By.Id("Email")).SendKeys(email);
+					loginForm.FindElement(By.Id("Email")).SendKeys(validEmail);
 					loginForm.FindElement(By.Id("Password")).Clear();
-					loginForm.FindElement(By.Id("Password")).SendKeys(password);
+					loginForm.FindElement(By.Id("Password")).SendKeys(validPassword);
 				}
 				else
 				{
 					driver.FindElement(By.Id("Email")).Clear();
-					driver.FindElement(By.Id("Email")).SendKeys(email);
+					driver.FindElement(By.Id("Email")).SendKeys(validEmail);
 					driver.FindElement(By.Id("Password")).Clear();
-					driver.FindElement(By.Id("Password")).SendKeys(password);
+					driver.FindElement(By.Id("Password")).SendKeys(validPassword);
 				}
 				findLoginButton(driver.FindElements(By.TagName("button")), driver).Click();
 

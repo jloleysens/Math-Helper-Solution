@@ -38,7 +38,7 @@ namespace MathHelperTests.Test
 		
 		//This is the store object that will be used for the regression tests (also opens the FF instance)
 		Store store = new Store();
-		String Url;
+		String Url = "http://mystore.storefront.co.za";
 		private String uname = randomUname();
 
 		[Test]

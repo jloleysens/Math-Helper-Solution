@@ -143,6 +143,7 @@ namespace MathHelperTests.Test
 				assertionErrors.Append(e.Message);
 			}
 			Console.WriteLine("\nSuccessful Login Test: " + hasErrors(assertionErrors));
+			Assert.True(false);
 		}
 		//[TestCase]
 		public void successfulLogOut()

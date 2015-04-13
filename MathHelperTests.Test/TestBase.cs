@@ -88,11 +88,13 @@ namespace MathHelperTests.Test
 			{
 				failedCounter += 1;
 				return "FAILED\n"+errors.ToString();
+
 			}
 			else
 			{
 				passedCounter += 1;
 				return "PASSED";
+
 			}
 		}
 		/// <summary>

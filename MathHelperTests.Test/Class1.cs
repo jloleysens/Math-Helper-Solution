@@ -10,9 +10,10 @@ using OpenQA.Selenium.Firefox;
 
 namespace MathHelperTests.Test
 {
+	[TestFixture, Category("Unit")]
     public class TestClass
     {
-		[TestCase, Category("Unit")]
+		[Test]
 		public void AddTest()
 		{
 			ConsoleApplication1.MathsHelper helper = new ConsoleApplication1.MathsHelper();
@@ -20,51 +21,103 @@ namespace MathHelperTests.Test
 			Assert.AreEqual(30, result);
 		}
 
-		[TestCase, Category("Unit")]
+		[Test]
 		public void SubtractTest()
 		{
 			ConsoleApplication1.MathsHelper helper = new ConsoleApplication1.MathsHelper();
 			int result = helper.Subtract(20, 10);
 			Assert.AreEqual(10, result);
 		}
-		[TestCase, Category("UI")]
-		public void StoreTests()
+	}
+	[TestFixture, Category("UI")]
+	public class StoreTests
+	{
+		/// <summary>
+		/// In this collection of tests various store related features will be tested from the UI perspective (i.e. regression testing)
+		/// </summary>
+		
+		//This is the store object that will be used for the regression tests (also opens the FF instance)
+		Store store = new Store();
+		private String uname = randomUname();
+
+		[Test]
+		public void successfulLogin()
 		{
-
-			Store store = new Store();
-			store.Url = "http://mystore.storefront.co.za/";
-
 			store.SetupTest();
-			store.loginFormValidation();
-			store.SetupTest();
-			store.successfulLogin("tester1.warp@gmail.com","hellopeter*1");
+			store.successfulLogin("tester1.warp@gmail.com", "hellopeter*1");
+		}
+
+		[Test]
+		public void successfulLogOut()
+		{
 			store.SetupTest();
 			store.successfulLogOut();
+		}
 
-			//This will be used to generate a random hexadecimal 
-			var random = new Random();
-			var uname = random.Next(0x1000000);
+		[Test]
+		public void registrationFormValidation()
+		{
+			//var random = new Random();
+			//var uname = random.Next(0x1000000);
 
 			store.SetupTest();
 			store.registrationFormValidation(uname.ToString(), uname.ToString(), uname.ToString() + "@gmail.com", uname.ToString());
-			store.SetupTest();
-			store.registerUser(uname.ToString(), uname.ToString(), uname.ToString() + "@gmail.com", uname.ToString());
-			store.TeardownTest();
+		}
 
-			//The forgotten password and reset password tests still have to come in here
+		[Test]
+		public void forgotPasswordNonExistentEmail()
+		{
 			store.SetupTest();
 			store.forgotPasswordNonExistentEmail();
+		}
 
+		[Test]
+		public void registerUser()
+		{
+			store.SetupTest();
+			store.registerUser(uname, uname, uname + "@gmail.com", uname);
+		}
+
+
+		[Test]
+		public void addItemsToBasket()
+		{
 			store.SetupTest();
 			store.addItemsToBasket();
+		}
+
+		[Test]
+		public void addGiftCards()
+		{
 			store.SetupTest();
 			store.addGiftCards();
+		}
+
+		[Test]
+		public void reviewBasket()
+		{
 			store.SetupTest();
 			store.reviewBasket();
+		}
+
+		[Test]
+		public void Checkout()
+		{
 			store.SetupTest();
 			store.Checkout();
+		}
 
+		[Test]
+		public void Teardown()
+		{
 			store.TeardownTest();
 		}
-    }
+		public static String randomUname()
+		{
+			Random random = new Random();
+			String uname = random.Next(0x1000000).ToString();
+
+			return uname;
+		}
+	}
 }

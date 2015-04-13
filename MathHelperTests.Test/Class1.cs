@@ -38,11 +38,13 @@ namespace MathHelperTests.Test
 		
 		//This is the store object that will be used for the regression tests (also opens the FF instance)
 		Store store = new Store();
+		String Url;
 		private String uname = randomUname();
 
 		[Test]
 		public void successfulLogin()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.successfulLogin("tester1.warp@gmail.com", "hellopeter*1");
 		}
@@ -50,6 +52,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void successfulLogOut()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.successfulLogOut();
 		}
@@ -59,7 +62,7 @@ namespace MathHelperTests.Test
 		{
 			//var random = new Random();
 			//var uname = random.Next(0x1000000);
-
+			store.Url = Url;
 			store.SetupTest();
 			store.registrationFormValidation(uname.ToString(), uname.ToString(), uname.ToString() + "@gmail.com", uname.ToString());
 		}
@@ -67,6 +70,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void forgotPasswordNonExistentEmail()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.forgotPasswordNonExistentEmail();
 		}
@@ -74,6 +78,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void registerUser()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.registerUser(uname, uname, uname + "@gmail.com", uname);
 		}
@@ -82,6 +87,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void addItemsToBasket()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.addItemsToBasket();
 		}
@@ -89,6 +95,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void addGiftCards()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.addGiftCards();
 		}
@@ -96,6 +103,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void reviewBasket()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.reviewBasket();
 		}
@@ -103,6 +111,7 @@ namespace MathHelperTests.Test
 		[Test]
 		public void Checkout()
 		{
+			store.Url = Url;
 			store.SetupTest();
 			store.Checkout();
 		}

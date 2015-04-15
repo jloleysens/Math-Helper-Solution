@@ -42,7 +42,7 @@ namespace MathHelperTests.Test
 		private String uname = randomUname();
 
 		[Test]
-		public void successfulLogin()
+		public void AsuccessfulLogin()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -50,7 +50,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void successfulLogOut()
+		public void BsuccessfulLogOut()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -58,7 +58,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void registrationFormValidation()
+		public void CregistrationFormValidation()
 		{
 			//var random = new Random();
 			//var uname = random.Next(0x1000000);
@@ -68,7 +68,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void forgotPasswordNonExistentEmail()
+		public void DforgotPasswordNonExistentEmail()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -76,7 +76,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void registerUser()
+		public void EregisterUser()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -85,7 +85,7 @@ namespace MathHelperTests.Test
 
 
 		[Test]
-		public void addItemsToBasket()
+		public void FaddItemsToBasket()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -93,7 +93,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void addGiftCards()
+		public void GaddGiftCards()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -101,7 +101,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void reviewBasket()
+		public void HreviewBasket()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -109,7 +109,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void Checkout()
+		public void ICheckout()
 		{
 			store.Url = Url;
 			store.SetupTest();
@@ -117,7 +117,7 @@ namespace MathHelperTests.Test
 		}
 
 		[Test]
-		public void Teardown()
+		public void JTeardown()
 		{
 			store.TeardownTest();
 		}

@@ -97,7 +97,7 @@ namespace MathHelperTests.Test
 			Console.WriteLine("\nLogin Form Validation Test: " + hasErrors(assertionErrors));
 		}
 		//[TestCase]
-		public void successfulLogin(String email, String password)
+		public Boolean successfulLogin(String email, String password)
 		{
 			IWebDriver driver = this.WebDriver;
 			try
@@ -142,11 +142,19 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nSuccessful Login Test: " + hasErrors(assertionErrors));
-			Assert.True(false);
+			//Console.WriteLine("\nSuccessful Login Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			//Assert.True(false);
 		}
 		//[TestCase]
-		public void successfulLogOut()
+		public Boolean successfulLogOut()
 		{
 			IWebDriver driver = this.WebDriver;
 			try
@@ -190,7 +198,15 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nSuccessful Log Out Test: " + hasErrors(assertionErrors));
+			//Console.WriteLine("\nSuccessful Log Out Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		/// <summary>
 		/// The following method is similar to findLoginLink and findRegisterLink, except that it

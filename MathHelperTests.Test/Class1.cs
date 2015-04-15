@@ -44,17 +44,15 @@ namespace MathHelperTests.Test
 		[Test]
 		public void AsuccessfulLogin()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.successfulLogin("tester1.warp@gmail.com", "hellopeter*1");
+			Assert.True(store.successfulLogin("tester1.warp@gmail.com", "hellopeter*1"));
 		}
 
 		[Test]
 		public void BsuccessfulLogOut()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.successfulLogOut();
+			Assert.True(store.successfulLogOut());
 		}
 
 		[Test]
@@ -62,58 +60,51 @@ namespace MathHelperTests.Test
 		{
 			//var random = new Random();
 			//var uname = random.Next(0x1000000);
-			store.Url = Url;
 			store.SetupTest();
-			store.registrationFormValidation(uname.ToString(), uname.ToString(), uname.ToString() + "@gmail.com", uname.ToString());
+			Assert.True(store.registrationFormValidation(uname.ToString(), uname.ToString(), uname.ToString() + "@gmail.com", uname.ToString()));
 		}
 
 		[Test]
 		public void DforgotPasswordNonExistentEmail()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.forgotPasswordNonExistentEmail();
+			Assert.True(store.forgotPasswordNonExistentEmail());
 		}
 
 		[Test]
 		public void EregisterUser()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.registerUser(uname, uname, uname + "@gmail.com", uname);
+			Assert.True(store.registerUser(uname, uname, uname + "@gmail.com", uname));
 		}
 
 
 		[Test]
 		public void FaddItemsToBasket()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.addItemsToBasket();
+			Assert.True(store.addItemsToBasket());
 		}
 
 		[Test]
 		public void GaddGiftCards()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.addGiftCards();
+			Assert.True(store.addGiftCards());
 		}
 
 		[Test]
 		public void HreviewBasket()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.reviewBasket();
+			Assert.True(store.reviewBasket());
 		}
 
 		[Test]
 		public void ICheckout()
 		{
-			store.Url = Url;
 			store.SetupTest();
-			store.Checkout();
+			Assert.True(store.Checkout());
 		}
 
 		[Test]
@@ -125,7 +116,6 @@ namespace MathHelperTests.Test
 		{
 			Random random = new Random();
 			String uname = random.Next(0x1000000).ToString();
-
 			return uname;
 		}
 	}

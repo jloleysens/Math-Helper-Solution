@@ -22,7 +22,7 @@ namespace MathHelperTests.Test
 		String storeName = "kidsemporium";
 		String passwordMismatchAlert = ".*do not match.*";
 		//[Test]
-		public void forgotPasswordNonExistentEmail()
+		public Boolean forgotPasswordNonExistentEmail()
 		{
 			IWebDriver driver = this.WebDriver;
 			try
@@ -46,10 +46,18 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nForgot Password Non-Existant Mail Test: " + hasErrors(assertionErrors));
+			//Console.WriteLine("\nForgot Password Non-Existant Mail Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		//[Test]
-		public void resetPassword()
+		public Boolean resetPassword()
 		{
 			///<summary>
 			///This unit test as of yet only works with gmail accounts.
@@ -102,7 +110,14 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nReset password test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		public IWebElement findForgotPasswordLink(IReadOnlyCollection<IWebElement> links, IWebDriver driver)
 		{

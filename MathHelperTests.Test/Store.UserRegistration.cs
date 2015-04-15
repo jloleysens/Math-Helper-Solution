@@ -19,7 +19,7 @@ namespace MathHelperTests.Test
 		//String homePageTitle = "[Hh]ome";
 
 		//[TestCase]
-		public void registrationFormValidation(String firstName, String surname, String email, String password)
+		public Boolean registrationFormValidation(String firstName, String surname, String email, String password)
 		{
 			IWebDriver driver = this.WebDriver;
 			try
@@ -128,10 +128,17 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nRegistration Form Validation Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		//[TestCase]
-		public void registerUser(String newUserFirstname, String newUserSurname, String newUserEmail, String newUserPassword)
+		public Boolean registerUser(String newUserFirstname, String newUserSurname, String newUserEmail, String newUserPassword)
 		{
 			IWebDriver driver = this.WebDriver;
 
@@ -183,7 +190,15 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nRegister New User Test: " + hasErrors(assertionErrors));
+			//Console.WriteLine("\nRegister New User Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

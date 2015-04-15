@@ -33,7 +33,7 @@ namespace MathHelperTests.Test
 		/// 3) End with 5 items in the basket for checkout
 		/// </summary>
 		//[TestCase]
-		public void addItemsToBasket()
+		public Boolean addItemsToBasket()
 		{
 			try
 			{
@@ -178,7 +178,14 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nAdd Item To Basket Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		//[TestCase]
 		///<summary>
@@ -186,7 +193,7 @@ namespace MathHelperTests.Test
 		///and exception handling. If, however, the store that is being tested does not yet have gift cards that
 		///can be added the test will essentially be skipped.
 		///</summary>
-		public void addGiftCards()
+		public Boolean addGiftCards()
 		{
 			try
 			{
@@ -236,11 +243,20 @@ namespace MathHelperTests.Test
 			}
 			finally
 			{
-				Console.WriteLine("\nCreate Gift Cards Test: " + hasErrors(assertionErrors));
+
+			}
+			//Console.WriteLine("\nCreate Gift Cards Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 		//[TestCase]
-		public void reviewBasket()
+		public Boolean reviewBasket()
 		{
 			///<summary>
 			///This tests the ability to make changes to quantities of items
@@ -273,7 +289,14 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nReview Basket Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		/// <summary>
 		/// This method takes a string that is expected to be in some form, for example: Stock: 45.00 or 8.00

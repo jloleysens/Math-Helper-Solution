@@ -34,7 +34,7 @@ namespace MathHelperTests.Test
 		/// marked as false (i.e. AllowShipping = false)
 		/// </summary>
 		//[TestCase]
-		public void Checkout()
+		public Boolean Checkout()
 		{
 			try
 			{
@@ -126,7 +126,15 @@ namespace MathHelperTests.Test
 			{
 				assertionErrors.Append(e.Message);
 			}
-			Console.WriteLine("\nCheckout Test: " + hasErrors(assertionErrors));
+			//Console.WriteLine("\nCheckout Test: " + hasErrors(assertionErrors));
+			if (Regex.IsMatch(hasErrors(assertionErrors), "PASSED"))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }

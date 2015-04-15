@@ -148,7 +148,7 @@ namespace MathHelperTests.Test
 			//If there is no link that is explicitly called register, then the navigating to the Login screen will provide the appropriate fields, in certain templates
 			IReadOnlyCollection<IWebElement> links = driver.FindElements(By.TagName("a"));
 			IWebElement registerLink = store.findLink(links, "[Rr][Ee][Gg][Ii][Ss][Tt][Ee][Rr]", driver);
-			IWebElement loginLink = store.findLink(links, "[Ll][Oo][Gg][Ii][Nn]", driver);
+			IWebElement loginLink = store.findLink(links, ".*[Ll][Oo][Gg][Ii][Nn].*", driver);
 			if(registerLink == null)
 			{
 				registerLink.Click();
@@ -205,20 +205,20 @@ namespace MathHelperTests.Test
 			driver.FindElement(By.Id("ConfirmPassword")).SendKeys(uname + "1");
 			store.findRegisterButton(driver.FindElements(By.TagName("button")), driver).Click();
 			//Assert that the following text is present:
-			Assert.True(Regex.IsMatch(driver.Title, ".*[Rr][Ee][Gg][Ii][Ss][Tt].*"));
+			Assert.True(Regex.IsMatch(driver.Title, "[Rr][Ee][Gg][Ii][Ss][Tt][Ee][Rr]"));
 				
 			//Register existing user test
 			registerForm = store.tryAssignElement(driver, "register-form");
 
 			driver.FindElement(By.Id("FirstName")).Clear();
-			driver.FindElement(By.Id("FirstName")).SendKeys("tester1.warp@gmail.com"); //on mystore this email will already be registered
+			driver.FindElement(By.Id("FirstName")).SendKeys(uname); //on mystore this email will already be registered
 			driver.FindElement(By.Id("Surname")).Clear();
 			driver.FindElement(By.Id("Surname")).SendKeys(uname);
 			//Cater for template specific layouts
 			if (registerForm != null)
 			{
 				registerForm.FindElement(By.Id("Email")).Clear();
-				registerForm.FindElement(By.Id("Email")).SendKeys(email);
+				registerForm.FindElement(By.Id("Email")).SendKeys("tester1.warp@gmail.com");
 				registerForm.FindElement(By.Id("Password")).Clear();
 				registerForm.FindElement(By.Id("Password")).SendKeys(uname);
 			}
@@ -268,7 +268,7 @@ namespace MathHelperTests.Test
 			//Data & Variables for this test
 			IReadOnlyCollection<IWebElement> links = driver.FindElements(By.TagName("a"));
 			IWebElement registerLink = store.findLink(links, "[Rr][Ee][Gg][Ii][Ss][Tt][Ee][Rr]", driver);
-			IWebElement loginLink = store.findLink(links,"[Ll][Oo][Gg][Ii][Nn]" ,driver);
+			IWebElement loginLink = store.findLink(links, ".*[Ll][Oo][Gg][Ii][Nn].*", driver);
 			String email = uname + "@" + uname + ".com";
 				
 			if (registerLink != null)
@@ -555,6 +555,7 @@ namespace MathHelperTests.Test
 			miniCart = WebDriver.FindElement(By.Id("mini-cart"));
 			miniCart.FindElement(By.TagName("a")).Click();
 
+			Thread.Sleep(TimeSpan.FromSeconds(1));
 			links = WebDriver.FindElements(By.TagName("a"));
 			store.findLink(links, "[Cc][Hh][Ee][Cc][Kk][Oo][Uu][Tt]", WebDriver).Click();
 
@@ -632,11 +633,11 @@ namespace MathHelperTests.Test
 		}
 			
 
-		[Test]
+		/*[Test]
 		public void JTeardown()
 		{
 			store.TeardownTest();
-		}
+		}*/
 		public static String randomUname()
 		{
 			Random random = new Random();

@@ -52,11 +52,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Store.Basket.cs" />
-    <Compile Include="Store.Checkout.cs" />
-    <Compile Include="Store.ForgotPassword.cs" />
-    <Compile Include="Store.Login.cs" />
-    <Compile Include="Store.UserRegistration.cs" />
+    <Compile Include="Store.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>

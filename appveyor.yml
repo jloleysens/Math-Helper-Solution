@@ -1,8 +1,15 @@
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
 version: 1.1.{build}
 nuget:
   account_feed: true
   project_feed: true
   disable_publish_on_pr: true 
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
 before_build:
   - nuget restore
 build:
@@ -10,16 +17,27 @@ build:
   publish_nuget_symbols: true
   include_nuget_references: true
   verbosity: minimal
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+#before_test:
+  #- Powershell PS_Scripts\Deployment_Script
 test:
   categories:
     - Common
     - [UI]
     - [Unit]
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
 deploy:
   provider: Environment
   name: production
   on:
     branch: master
     appveyor_repo_tag: true
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
 services:
   - iis

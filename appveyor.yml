@@ -20,8 +20,8 @@ build:
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
-before_test:
-  - Powershell PS_Scripts\Deployment_Script
+#before_test:
+  #- Powershell PS_Scripts\Deployment_Script
 test:
   categories:
     - Common

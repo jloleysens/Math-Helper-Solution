@@ -473,7 +473,7 @@ namespace MathHelperTests.Test
 
 			links = WebDriver.FindElements(By.TagName("a"));
 			//Find the gift cards link on the homepage
-			store.findLink(links, "[Gg][Ii][Ff][Tt]", WebDriver).Click();
+			store.findLink(links, "[Gg][Ii][Ff][Tt].*[Cc][Aa][Rr][Dd]", WebDriver).Click();
 
 			//Assumption here is that one of these will contain an img that will be a gift card
 
@@ -556,8 +556,11 @@ namespace MathHelperTests.Test
 			miniCart.FindElement(By.TagName("a")).Click();
 
 			Thread.Sleep(TimeSpan.FromSeconds(1));
-			links = WebDriver.FindElements(By.TagName("a"));
-			store.findLink(links, "[Cc][Hh][Ee][Cc][Kk][Oo][Uu][Tt]", WebDriver).Click();
+			//links = WebDriver.FindElements(By.TagName("a"));
+			//store.findLink(links, "[Cc][Hh][Ee][Cc][Kk][Oo][Uu][Tt]", WebDriver).Click();
+			
+			//This is a workaround because the Checkout button on the review view of the checkout process was not clickable via webdriver
+			WebDriver.Navigate().GoToUrl(Url + "/checkout/details");
 
 			WebDriver.FindElement(By.Id("new_billing_address")).Click();
 

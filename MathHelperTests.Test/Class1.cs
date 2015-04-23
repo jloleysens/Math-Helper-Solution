@@ -42,7 +42,7 @@ namespace MathHelperTests.Test
 		//This is the store object that will be used for the regression tests (also opens the FF instance)
 		Store store = new Store();
 		String Url = "http://mystore.storefront.co.za";
-		private String uname = randomUname(); //This variable will be used to derive random username and email addresses for testing purposes
+		//String uname = store.randomUname();
 
 		//Dataset for registration forma validation and registration
 		String registrationPageTitle = "[Rr][Ee][Gg][Ii][Ss][Tt][Ee][Rr]";
@@ -139,6 +139,7 @@ namespace MathHelperTests.Test
 		public void CregistrationFormValidation()
 		{
 			//Data
+			String uname = store.randomUname();
 			String email = uname + "@" + uname + ".com";
 
 			IWebDriver driver = this.store.WebDriver;
@@ -269,6 +270,7 @@ namespace MathHelperTests.Test
 			IReadOnlyCollection<IWebElement> links = driver.FindElements(By.TagName("a"));
 			IWebElement registerLink = store.findLink(links, "[Rr][Ee][Gg][Ii][Ss][Tt][Ee][Rr]", driver);
 			IWebElement loginLink = store.findLink(links, ".*[Ll][Oo][Gg][Ii][Nn].*", driver);
+			String uname = store.randomUname();
 			String email = uname + "@" + uname + ".com";
 				
 			if (registerLink != null)
@@ -626,7 +628,7 @@ namespace MathHelperTests.Test
 			}
 			else
 			{
-				WebDriver.FindElement(By.Id("Delivery")).Click();
+				//WebDriver.FindElement(By.Id("Delivery")).Click();
 				buttons = WebDriver.FindElements(By.TagName("button"));
 				store.findButton(buttons, "[Cc][Oo][Nn][Tt][Ii][Nn][Uu][Ee]", WebDriver).Click();
 			}
@@ -641,11 +643,40 @@ namespace MathHelperTests.Test
 		{
 			store.TeardownTest();
 		}*/
-		public static String randomUname()
+	}
+	[TestFixture, Category("UI")]
+	public class PortalTests
+	{
+		Portal portal = new Portal();
+		String Url = "http://portal.storefront.co.za"; //The url at which stores can be set up and managed with storefront
+
+		[Test]
+		public void createStoreTest()
 		{
-			Random random = new Random();
-			String uname = random.Next(0x1000000).ToString();
-			return uname;
+			//Data
+			String storeName = portal.randomStoreNameGenerator();
+			String storeEmail = storeName + "@" + storeName + ".com";
+			
+
+			IWebDriver driver = this.portal.WebDriver;
+			
+			driver.Navigate().GoToUrl(this.Url);
+
+			driver.FindElement(By.Id("StoreName")).Clear();
+			driver.FindElement(By.Id("StoreName")).SendKeys(storeName);
+			driver.FindElement(By.Id("EmailAddress")).Clear();
+			driver.FindElement(By.Id("EmailAddress")).SendKeys(storeEmail);
+			driver.FindElement(By.Id("Password")).Clear();
+			driver.FindElement(By.Id("Password")).SendKeys(storeName);
+
+			driver.FindElement(By.Id("btn-open-store")).Click();
+
+			WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(45));
+			wait.Until<IWebElement>(ExpectedConditions.ElementIsVisible(By.PartialLinkText("MY STORE"))).Click();
+
+			Assert.True(Regex.IsMatch(driver.Url, storeName));
+
+
 		}
 	}
 }

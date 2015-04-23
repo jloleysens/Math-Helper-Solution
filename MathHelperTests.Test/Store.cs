@@ -51,5 +51,11 @@ namespace MathHelperTests.Test
 			}
 			return null;
 		}
+		public String randomUname()
+		{
+			Random random = new Random();
+			String uname = random.Next(0x1000000).ToString();
+			return uname;
+		}
 	}
 }

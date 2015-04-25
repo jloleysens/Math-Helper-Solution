@@ -539,8 +539,8 @@ namespace MathHelperTests.Test
 			String city = "Cape Town";
 			String suburb = "Deep River";
 			String postalCode = "1234";
-			String masterCardTestNumber ="5340831953675721";
-			String cardHolderName = "Philips";
+			String masterCardTestNumber = "5470443148312467";
+			String cardHolderName = "John Doe";
 			String cardExpMonth = "1";
 			String cardExpYear = "2019";
 			String cardCVV = "123";
@@ -591,50 +591,64 @@ namespace MathHelperTests.Test
 				buttons = WebDriver.FindElements(By.TagName("button"));
 				
 				store.findButton(buttons, "[Cc][Oo][Nn][Ff][Ii][Rr][Mm]", WebDriver).Click();
-
 				//Collect all of the payment methods and find the on that says credit card.
 				paymentMethods = WebDriver.FindElements(By.Id("payment-method"));
-				foreach(IWebElement paymentMethod in paymentMethods)
+				foreach (IWebElement paymentMethod in paymentMethods)
 				{
-					if(Regex.IsMatch(paymentMethod.Text, ".*[Cc][Rr][Ee][Dd][Ii][Tt].*"))
+					if (Regex.IsMatch(paymentMethod.Text, ".*[Cc][Rr][Ee][Dd][Ii][Tt].*"))
 					{
 						paymentMethod.FindElement(By.TagName("Input")).Click();
 						break;
 					}
 				}
-					
+
 				buttons = WebDriver.FindElements(By.TagName("button"));
 				store.findButton(buttons, "[Pp][Aa][Yy][Mm][Ee][Nn][Tt]", WebDriver).Click();
-
-				//The following steps should be in the PayU UI
-				payUCreditCard = WebDriver.FindElement(By.Id("panel_creditcard"));
-				payUCreditCard.FindElement(By.TagName("input")).Click();
-				WebDriver.FindElement(By.Id("card")).Clear();
-				WebDriver.FindElement(By.Id("card")).SendKeys(masterCardTestNumber);
-				WebDriver.FindElement(By.Id("ccholdername")).Clear();
-				WebDriver.FindElement(By.Id("ccholdername")).SendKeys(cardHolderName);
-				new SelectElement(WebDriver.FindElement(By.Id("expMonth"))).SelectByValue(cardExpMonth);
-				new SelectElement(WebDriver.FindElement(By.Id("expYear"))).SelectByValue(cardExpYear);
-				WebDriver.FindElement(By.Id("cvvnumber")).Clear();
-				WebDriver.FindElement(By.Id("cvvnumber")).SendKeys(cardCVV);
-				
-				//This should be the final step in the payment process.
-				buttons = WebDriver.FindElements(By.TagName("button"));
-				store.findButton(buttons, "[Pp][Aa][Yy]", WebDriver).Click();
-
-				//This test still requires an assertion regarding successful payment, at the time of this writing the 
-				//payment process on the vanilla account is still not functional.
-				
 			}
 			else
 			{
 				//WebDriver.FindElement(By.Id("Delivery")).Click();
 				buttons = WebDriver.FindElements(By.TagName("button"));
 				store.findButton(buttons, "[Cc][Oo][Nn][Tt][Ii][Nn][Uu][Ee]", WebDriver).Click();
+
+				WebDriver.FindElement(By.Id("place-order-btn")).Click();
+
+				IWebElement checkoutForm = WebDriver.FindElement(By.Id("checkout-form"));
+				paymentMethods = checkoutForm.FindElements(By.TagName("label"));
+				foreach(IWebElement paymentMethod in paymentMethods)
+				{
+					if(Regex.IsMatch(paymentMethod.Text, ".*[Cc][Rr][Ee][Dd][Ii][Tt].*"))
+					{
+						paymentMethod.Click();
+					}
+				}
+				buttons = WebDriver.FindElements(By.TagName("button"));
+				store.findButton(buttons, "[Cc][Oo][Nn][Ff][Ii][Rr][Mm]", WebDriver).Click();
+
 			}
-			
-			WebDriver.FindElement(By.Id("place-order-btn"));
-			//This test still requires an assertion
+
+
+
+			//The following steps should be in the PayU UI
+			payUCreditCard = WebDriver.FindElement(By.Id("panel_creditcard"));
+			payUCreditCard.FindElement(By.TagName("input")).Click();
+			WebDriver.FindElement(By.Id("card")).Clear();
+			WebDriver.FindElement(By.Id("card")).SendKeys(masterCardTestNumber);
+			WebDriver.FindElement(By.Id("ccholdername")).Clear();
+			WebDriver.FindElement(By.Id("ccholdername")).SendKeys(cardHolderName);
+			new SelectElement(WebDriver.FindElement(By.Id("expMonth"))).SelectByValue(cardExpMonth);
+			new SelectElement(WebDriver.FindElement(By.Id("expYear"))).SelectByValue(cardExpYear);
+			WebDriver.FindElement(By.Id("cvvnumber")).Clear();
+			WebDriver.FindElement(By.Id("cvvnumber")).SendKeys(cardCVV);
+				
+			//This should be the final step in the payment process.
+			buttons = WebDriver.FindElements(By.TagName("button"));
+			store.findButton(buttons, "[Pp][Aa][Yy]", WebDriver).Click();
+
+			//This test still requires an assertion regarding successful payment, at the time of this writing the 
+			//payment process on the vanilla account is still not functional.
+				
+					
 		}
 			
 
